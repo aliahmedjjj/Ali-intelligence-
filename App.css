@@ -1,0 +1,230 @@
+/* تنسيقات CSS الرئيسية للتطبيق */
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #1e40af;
+  --background-color: #f8fafc;
+  --chat-bg-color: #ffffff;
+  --user-message-bg: #e0f2fe;
+  --assistant-message-bg: #f1f5f9;
+  --text-color: #0f172a;
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* تنسيقات عامة */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  direction: rtl;
+}
+
+/* تنسيقات الحاوية الرئيسية */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* تنسيقات الرأس */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1rem;
+}
+
+.app-header h1 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.clear-button {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* تنسيقات حاوية المحادثة */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--chat-bg-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  overflow: hidden;
+}
+
+.messages-container {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* تنسيقات الرسائل */
+.message {
+  max-width: 80%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.user-message {
+  align-self: flex-start;
+  background-color: var(--user-message-bg);
+  border-bottom-right-radius: 0;
+}
+
+.assistant-message {
+  align-self: flex-end;
+  background-color: var(--assistant-message-bg);
+  border-bottom-left-radius: 0;
+}
+
+.message-content {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.message-timestamp {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+/* تنسيقات مؤشر التحميل */
+.loading {
+  padding: 0.5rem 1rem;
+}
+
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+}
+
+.loading-indicator span {
+  animation: loading 1.4s infinite ease-in-out both;
+  font-size: 1.5rem;
+}
+
+.loading-indicator span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loading-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes loading {
+  0%, 80%, 100% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+/* تنسيقات نموذج الإدخال */
+.input-form {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--chat-bg-color);
+}
+
+.message-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.message-input:focus {
+  border-color: var(--primary-color);
+}
+
+.send-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.send-button:hover:not(:disabled) {
+  background-color: var(--secondary-color);
+}
+
+.send-button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* تنسيقات التذييل */
+.app-footer {
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 1rem;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+/* تنسيقات الاستجابة */
+@media (max-width: 768px) {
+  .message {
+    max-width: 90%;
+  }
+  
+  .app-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .input-form {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .send-button {
+    margin-right: 0;
+    width: 100%;
+  }
+}
